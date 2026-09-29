@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ed">
+  <meta name="description" content="Meet i3Core, an Ashburn-based technology services company helping organizations turn complex challenges into practical solutions since 2002. We turn a problem to a dream come true.">
+  <title>About Us | i3Core</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f3ed;
+      --white: #fffefa;
+      --ink: #172b27;
+      --muted: #586762;
+      --green: #23645a;
+      --green-dark: #183d36;
+      --lime: #d9ed72;
+      --line: #d5d9d1;
+      --coral: #e88468;
+      --sans: "DM Sans", "Helvetica Neue", sans-serif;
+      --display: "Manrope", "Helvetica Neue", sans-serif;
+      --content: 1180px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(var(--content), calc(100% - 64px)); margin-inline: auto; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 20px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 26px; height: 2px; background: var(--coral); content: ""; }
+
+    .site-header {
+      position: relative;
+      z-index: 5;
+      background: var(--paper);
+      border-bottom: 1px solid rgba(23, 43, 39, .12);
+    }
+    .header-inner {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+    .wordmark i { width: 8px; height: 8px; margin: 15px 0 0 2px; background: var(--coral); border-radius: 50%; }
+    .main-nav { display: flex; align-items: center; gap: 34px; }
+    .main-nav a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+    .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--green); }
+    .main-nav .nav-contact {
+      padding: 11px 17px;
+      border: 1px solid var(--green);
+      color: var(--green-dark);
+    }
+    .menu-toggle { display: none; }
+
+    .hero { padding: 54px 0 64px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr);
+      align-items: center;
+      gap: clamp(48px, 8vw, 110px);
+    }
+    .hero-copy { padding: 28px 0; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display); letter-spacing: 0; }
+    h1 {
+      max-width: 660px;
+      margin-bottom: 24px;
+      font-size: clamp(44px, 5.1vw, 70px);
+      font-weight: 600;
+      line-height: 1.08;
+    }
+    .hero-copy > p:not(.eyebrow) {
+      max-width: 510px;
+      margin-bottom: 32px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--green);
+      color: var(--green-dark);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .text-link span { transition: transform 160ms ease; }
+    .text-link:hover span { transform: translateX(4px); }
+    .hero-media {
+      position: relative;
+      min-height: 420px;
+      margin: 0;
+      background: #d8ded5;
+    }
+    .hero-media::before {
+      position: absolute;
+      z-index: 0;
+      top: -13px;
+      right: -13px;
+      width: 94px;
+      height: 94px;
+      background: var(--lime);
+      content: "";
+    }
+    .hero-media img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .image-note {
+      position: absolute;
+      z-index: 2;
+      right: -1px;
+      bottom: 0;
+      max-width: 235px;
+      padding: 17px 20px;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .facts { background: var(--green-dark); color: var(--white); }
+    .facts-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.4fr;
+      min-height: 128px;
+      align-items: center;
+    }
+    .fact {
+      min-height: 54px;
+      padding: 5px 32px;
+      border-right: 1px solid rgba(255, 255, 255, .2);
+    }
+    .fact:first-child { padding-left: 0; }
+    .fact:last-child { padding-right: 0; border-right: 0; }
+    .fact strong { display: block; color: var(--lime); font-family: var(--display); font-size: 24px; font-weight: 700; line-height: 1.25; }
+    .fact span { display: block; margin-top: 5px; color: rgba(255,255,255,.76); font-size: 12px; }
+
+    .story { padding: 106px 0 100px; }
+    .story-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; }
+    .section-label { padding-top: 9px; }
+    .section-label .eyebrow { margin-bottom: 0; }
+    .story-copy h2, .capabilities-head h2, .principles h2 {
+      margin-bottom: 24px;
+      font-size: clamp(32px, 3.5vw, 45px);
+      font-weight: 600;
+      line-height: 1.17;
+    }
+    .story-copy p { max-width: 710px; margin-bottom: 18px; color: var(--muted); }
+    .story-copy p:last-child { margin-bottom: 0; }
+
+    .capabilities { padding: 92px 0 100px; background: var(--white); }
+    .capabilities-head {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 70px;
+      margin-bottom: 34px;
+    }
+    .capabilities-head h2 { max-width: 610px; margin-bottom: 0; }
+    .capabilities-head .eyebrow { padding-top: 9px; }
+    .capability-list { border-top: 1px solid var(--line); }
+    .capability {
+      display: grid;
+      grid-template-columns: 70px minmax(190px, .72fr) 1fr;
+      align-items: baseline;
+      gap: 30px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .capability .number { color: var(--coral); font-size: 12px; font-weight: 700; }
+    .capability h3 { margin: 0; font-size: 20px; font-weight: 700; }
+    .capability p { max-width: 460px; margin: 0; color: var(--muted); font-size: 14px; }
+
+    .principles { padding: 100px 0 106px; }
+    .principles-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 42px; }
+    .principles h2 { max-width: 520px; margin: 0; }
+    .principles-intro { max-width: 410px; margin: 0 0 4px; color: var(--muted); }
+    .principle-list { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .principle { padding: 24px 25px 0 0; }
+    .principle + .principle { padding-left: 25px; border-left: 1px solid var(--line); }
+    .principle h3 { margin-bottom: 9px; font-size: 17px; font-weight: 700; }
+    .principle p { max-width: 320px; margin: 0; color: var(--muted); font-size: 14px; }
+
+    .contact-band { padding: 62px 0; background: var(--lime); }
+    .contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .contact-band h2 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); font-weight: 600; line-height: 1.2; }
+    .contact-band .eyebrow { margin-bottom: 12px; color: var(--green-dark); }
+    .contact-band .eyebrow::before { background: var(--coral); }
+    .contact-button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 21px;
+      border: 1px solid var(--green-dark);
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 160ms ease, color 160ms ease;
+    }
+    .contact-button:hover { background: transparent; color: var(--green-dark); }
+
+    .site-footer { padding: 31px 0; background: var(--green-dark); color: var(--white); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .footer-brand { color: var(--white); font-size: 21px; }
+    .footer-brand i { background: var(--lime); }
+    .footer-details { display: flex; flex-wrap: wrap; justify-content: end; gap: 8px 28px; color: rgba(255,255,255,.75); font-size: 12px; }
+    .footer-details a { text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 3px; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 40px, var(--content)); }
+      .header-inner { min-height: 70px; }
+      .menu-toggle {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border: 1px solid var(--line);
+        background: transparent;
+        cursor: pointer;
+      }
+      .menu-toggle span { width: 18px; height: 2px; background: var(--ink); transition: transform 160ms ease; }
+      .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 18px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .main-nav.is-open { display: flex; flex-direction: column; }
+      .main-nav a { padding: 12px 0; }
+      .main-nav .nav-contact { align-self: flex-start; margin-top: 7px; padding: 9px 14px; }
+      .hero { padding: 34px 0 45px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 26px; }
+      .hero-copy { padding: 12px 0 0; }
+      h1 { max-width: 540px; font-size: clamp(42px, 10vw, 60px); }
+      .hero-copy > p:not(.eyebrow) { font-size: 16px; }
+      .hero-media { min-height: 300px; margin-right: 10px; }
+      .hero-media img { height: 300px; }
+      .hero-media::before { right: -10px; width: 65px; height: 65px; }
+      .facts-inner { grid-template-columns: 1fr 1fr; padding-block: 20px; }
+      .fact { padding: 12px 18px; }
+      .fact:first-child { padding-left: 0; }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:last-child { grid-column: 1 / -1; padding-left: 0; border-top: 1px solid rgba(255,255,255,.2); }
+      .story, .capabilities, .principles { padding-block: 68px; }
+      .story-grid, .capabilities-head { grid-template-columns: 1fr; gap: 19px; }
+      .story-copy h2, .capabilities-head h2, .principles h2 { font-size: 34px; }
+      .capabilities-head { margin-bottom: 24px; }
+      .capability { grid-template-columns: 35px 1fr; gap: 5px 15px; padding: 19px 0; }
+      .capability p { grid-column: 2; }
+      .principles-head { display: block; margin-bottom: 30px; }
+      .principles-intro { margin-top: 17px; }
+      .principle-list { grid-template-columns: 1fr; }
+      .principle, .principle + .principle { padding: 20px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+      .contact-band { padding: 43px 0; }
+      .contact-inner { align-items: flex-start; flex-direction: column; gap: 23px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; gap: 20px; }
+      .footer-details { justify-content: start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top" aria-label="i3Core home">i3Core<i aria-hidden="true"></i></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="https://i3core.com/">Home</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#about" aria-current="page">About Us</a>
+        <a href="https://i3core.com/contract-vehicles/">Contract Vehicles</a>
+        <a class="nav-contact" href="mailto:info@i3core.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">About i3Core</p>
+          <h1 id="hero-title">Built around your mission.</h1>
+          <p>We help organizations make technology work harder, with thoughtful engineering and solutions shaped around the people who use them.</p>
+          <a class="text-link" href="#capabilities">Explore our capabilities <span aria-hidden="true">&#8594;</span></a>
+        </div>
+        <figure class="hero-media">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="A team collaborating around a laptop at a table" fetchpriority="high">
+          <figcaption class="image-note">People first. Technology with purpose.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="facts" aria-label="i3Core at a glance">
+      <div class="wrap facts-inner">
+        <div class="fact"><strong>Since 2002</strong><span>Building experience that lasts</span></div>
+        <div class="fact"><strong>Ashburn, VA</strong><span>Rooted in Northern Virginia</span></div>
+        <div class="fact"><strong>Woman-owned · Minority-owned</strong><span>An independent small business with a broad perspective</span></div>
+      </div>
+    </section>
+
+    <section class="story" id="about" aria-labelledby="story-title">
+      <div class="wrap story-grid">
+        <div class="section-label"><p class="eyebrow">Who we are</p></div>
+        <div class="story-copy">
+          <h2 id="story-title">A clear path from challenge to progress.</h2>
+          <p>Founded in 2002, i3Core is a technology services company based in Ashburn, Virginia. We work with organizations at different stages, helping them identify where technology can make a meaningful difference.</p>
+          <p>From early planning to implementation and ongoing support, our approach starts by understanding your needs. Then we bring together industry knowledge and technical expertise to create integrated solutions built for real-world use.</p>
+          <p>We measure our work by the outcomes our clients achieve, and we stay committed to quality, responsiveness, and professional excellence at every step.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="wrap">
+        <div class="capabilities-head">
+          <p class="eyebrow">What we do</p>
+          <h2 id="capabilities-title">Connected expertise. Practical solutions.</h2>
+        </div>
+        <div class="capability-list">
+          <article class="capability">
+            <span class="number">01</span>
+            <h3>Engineering</h3>
+            <p>Professional engineering services that carry your needs from planning and design through delivery with convenience and industry expertise.</p>
+          </article>
+          <article class="capability">
+            <span class="number">02</span>
+            <h3>Cloud capabilities</h3>
+            <p>Cloud expertise to help organizations put modern platforms and services to work.</p>
+          </article>
+          <article class="capability">
+            <span class="number">03</span>
+            <h3>Mobility solutions</h3>
+            <p>Mobile solutions that help people access the tools and information they need.</p>
+          </article>
+          <article class="capability">
+            <span class="number">04</span>
+            <h3>Digital security</h3>
+            <p>Security-focused services to help protect critical digital data and systems.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="wrap">
+        <div class="principles-head">
+          <div>
+            <p class="eyebrow">How we work</p>
+            <h2 id="principles-title">Good work starts with listening.</h2>
+          </div>
+          <p class="principles-intro">Every organization is different. We bring curiosity, care, and technical depth to the work so the solution fits the challenge.</p>
+        </div>
+        <div class="principle-list">
+          <article class="principle">
+            <h3>Understand first</h3>
+            <p>We take time to learn your goals, constraints, and the people behind the work.</p>
+          </article>
+          <article class="principle">
+            <h3>Build with purpose</h3>
+            <p>We connect business needs with the right technology, without losing sight of the details.</p>
+          </article>
+          <article class="principle">
+            <h3>Stay accountable</h3>
+            <p>We value clear communication, responsiveness, and results you can put to use.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-band" aria-labelledby="contact-title">
+      <div class="wrap contact-inner">
+        <div>
+          <p class="eyebrow">Start a conversation</p>
+          <h2 id="contact-title">Have a challenge in mind?</h2>
+        </div>
+        <a class="contact-button" href="mailto:info@i3core.com">Talk with i3Core</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="wordmark footer-brand" href="#top" aria-label="i3Core, back to top">i3Core<i aria-hidden="true"></i></a>
+      <div class="footer-details">
+        <a href="mailto:info@i3core.com">info@i3core.com</a>
+        <span>Ashburn, Virginia</span>
+        <span>&copy; <span id="year">2026</span> i3Core</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.main-nav');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+      navigation.classList.toggle('is-open', !isOpen);
+    });
+
+    navigation.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation menu');
+        navigation.classList.remove('is-open');
+      }
+    });
+  </script>
+</body>
+</html>
