@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anonymous Feedback — i3Core (Internal)</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .feedback-float{position:fixed;right:20px;bottom:20px;z-index:999}
+    .feedback-button{background:var(--green-dark);color:var(--white);border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+    .feedback-panel{width:360px;padding:18px;background:var(--white);box-shadow:0 8px 24px rgba(0,0,0,.12);border-radius:10px}
+    .feedback-panel textarea{width:100%;height:110px}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Internal — Anonymous Feedback</h1>
+    <p>This page is intended for internal employees only. Submissions are anonymized before storage. Do not include names or protected health information.</p>
+    <p>You can also use the floating feedback button at the bottom-right.</p>
+  </main>
+
+  <div class="feedback-float">
+    <div id="panel" class="feedback-panel hidden" role="dialog" aria-label="Anonymous feedback">
+      <label for="fb-text">Your feedback (anonymous)</label>
+      <textarea id="fb-text" maxlength="2500" placeholder="Share your thoughts with management"></textarea>
+      <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end;align-items:center">
+        <select id="fb-category">
+          <option value="general">General</option>
+          <option value="people">People/HR</option>
+          <option value="process">Process</option>
+          <option value="tools">Tools</option>
+        </select>
+        <button id="submit" class="feedback-button">Send</button>
+      </div>
+      <p id="status" style="font-size:13px;margin-top:8px;color:var(--muted)"></p>
+    </div>
+    <button id="open" class="feedback-button">Feedback</button>
+  </div>
+
+  <script>
+    const open = document.getElementById('open');
+    const panel = document.getElementById('panel');
+    const submit = document.getElementById('submit');
+    const status = document.getElementById('status');
+    const text = document.getElementById('fb-text');
+    const category = document.getElementById('fb-category');
+
+    open.addEventListener('click', () => panel.classList.toggle('hidden'));
+
+    async function postFeedback(body) {
+      try {
+        const res = await fetch('/api/submit-feedback', {
+          method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
+        });
+        return res.json();
+      } catch (err) { return {ok:false,error:err.message}; }
+    }
+
+    submit.addEventListener('click', async () => {
+      status.textContent='';
+      const v = text.value.trim();
+      if (!v) { status.textContent='Please enter feedback.'; return; }
+      submit.disabled = true; status.textContent = 'Sending…';
+      const payload = { text: v, category: category.value };
+      const result = await postFeedback(payload);
+      submit.disabled = false;
+      if (result && result.ok) { status.textContent='Thanks — your feedback was received.'; text.value=''; setTimeout(()=>panel.classList.add('hidden'),1200); }
+      else { status.textContent = 'Failed to send feedback.'; }
+    });
+  </script>
+</body>
+</html>

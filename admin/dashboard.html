@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard — Feedback</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>body{padding:20px}.card{padding:12px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px}</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Feedback Admin</h1>
+    <p>Enter admin token to load anonymized feedback summaries.</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <input id="token" placeholder="Admin token" style="flex:1;padding:8px">
+      <button id="load" class="contact-button">Load</button>
+    </div>
+    <div id="list"></div>
+  </main>
+
+  <script>
+    const load = document.getElementById('load');
+    const list = document.getElementById('list');
+    load.addEventListener('click', async () => {
+      const token = document.getElementById('token').value.trim();
+      if (!token) return alert('Enter admin token');
+      list.innerHTML = 'Loading…';
+      try {
+        const res = await fetch('/api/admin/list-feedback', { headers: { 'x-admin-token': token }});
+        if (!res.ok) throw new Error('Unauthorized');
+        const body = await res.json();
+        list.innerHTML = body.rows.map(r => `<div class="card"><strong>${new Date(r.created_at).toLocaleString()}</strong><div style="margin-top:6px">${r.summary}</div><div style="margin-top:8px;color:var(--muted)">Category: ${r.category} — Sentiment: ${r.sentiment || 'n/a'}</div></div>`).join('')
+      } catch (err) { list.innerHTML = 'Failed to load: '+err.message }
+    });
+  </script>
+</body>
+</html>
